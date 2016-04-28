@@ -1,8 +1,9 @@
 ### criando meu namespace
 
-pos <- which(grepl(".ocmisc",search()))
-if(length(pos) >0) detach(pos=pos)
-rm(pos)
+#pos <- which(grepl(".ocmisc",search()))
+#if(length(pos) >0) detach(pos=pos)
+#rm(pos)
+
 Fiomisc <- new.env()
 
 
