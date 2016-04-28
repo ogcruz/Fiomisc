@@ -11,7 +11,7 @@
 ## EDA modifcada ha muito tempo!!! baseada na funcao eda do splus 3.4
 ## mod OGC 2012
 
-'eda'  <- function(x,nome="")
+eda  <- function(x,nome="")
 {
     # require(ctest)
     if (!is.numeric(x) || !is.vector(x))  {
@@ -64,7 +64,7 @@
 #### Modificada dos pacote psych
 ### out 2010 OGC
 
-'panel.lm' <-
+panel.lm <-
     function (x, y, col = par("col"), bg = NA, pch = par("pch"),
               cex = 1, col.lm = "red",  ...)
     {   ymin <- min(y)
@@ -80,7 +80,7 @@
                col = col.lm, ...)
     }
 
-'panel.lm.ellipse' <-
+panel.lm.ellipse <-
     function (x, y, col = par("col"), bg = NA, pch = par("pch"),
               cex = 1, col.lm = "red",  ...)
     {   ymin <- min(y)
@@ -103,7 +103,7 @@
 
     }
 
-'panel.hist.density' <-
+panel.hist.density <-
     function(x, ...)
     {
         usr <- par("usr"); on.exit(par(usr))
@@ -117,7 +117,7 @@
         lines(d)
     }
 
-'panel.hist' <-
+panel.hist <-
     function(x, ...)
     {
         usr <- par("usr"); on.exit(par(usr))
@@ -129,7 +129,7 @@
     }
 
 
-'panel.cor' <-
+panel.cor <-
     function(x, y, digits=2, prefix="", cex.cor)
     {
         usr <- par("usr"); on.exit(par(usr))
@@ -142,7 +142,7 @@
     }
 
 #baseda na funcao de eilse do John Fox
-'p.ellipse' <- function(x=0,y=0,xs=1,ys=1,r=0,add=TRUE,segments=51, col = par("col"),col.pt = par("col"),...) {
+p.ellipse <- function(x=0,y=0,xs=1,ys=1,r=0,add=TRUE,segments=51, col = par("col"),col.pt = par("col"),...) {
 
     angles <- (0:segments) * 2 * pi/segments
     unit.circle <- cbind(cos(angles), sin(angles))
@@ -159,7 +159,7 @@
 }
 
 
-'panel.ellipse' <-
+panel.ellipse <-
     function (x, y, col = par("col"), bg = NA, pch = par("pch"),
               cex = 1, col.smooth = "red",col.pt = par("col"), ...)
     {xm <- mean(x,na.rm=TRUE)
@@ -172,7 +172,7 @@
     }
 
 
-'panel.smoothie' <-
+panel.smoothie <-
     function (x, y, col = par("col"), bg = NA, pch = par("pch"),
               cex = 1, col.smooth = "red", span = 2/3, iter = 3,col.pt = par("col"),...)
     {
@@ -192,7 +192,7 @@
         p.ellipse(xm,ym,xs,ys,r,col=col.smooth,...)
     }
 
-'panel.jiggle' <-
+panel.jiggle <-
     function (x, y, col = cor, bg = NA, pch = par("pch"),
               cex = 1, col.smooth = "red", span = 2/3, iter = 3,col.pt = par("col"), ...)
     {
@@ -213,7 +213,7 @@
         p.ellipse(xm,ym,xs,ys,r,col=col.smooth,...)
     }
 
-'panel.cor.scale' <-
+panel.cor.scale <-
     function(x, y, digits=2, prefix="", cex.cor)
     {
         usr <- par("usr"); on.exit(par(usr))
@@ -231,13 +231,13 @@
 
 
 
-'eda.pairs' <- function(x) pairs(x,upper.panel=panel.cor.scale,diag.panel=panel.hist.density,lower.panel=panel.smooth)
+eda.pairs <- function(x) pairs(x,upper.panel=panel.cor.scale,diag.panel=panel.hist.density,lower.panel=panel.smooth)
 
 
 
 ### eda heat
 
-'eda.cor' <- function(x,metodo="complete") {
+eda.cor <- function(x,metodo="complete") {
     if(length(dev.list()) >0) dev.off()
     split.screen(c(1,2))
     screen(1)
@@ -251,7 +251,7 @@
 
 ## adaptada da funcao plot.cor pacote psych
 
-'.hm'<- function (r, numbers = FALSE, colors = TRUE, n = 51, main = NULL,
+.hm <- function (r, numbers = FALSE, colors = TRUE, n = 51, main = NULL,
                                  zlim = c(-1, 1), show.legend = FALSE, labels = NULL, n.legend = 10,
                                  keep.par = TRUE, ...)
 {
@@ -349,7 +349,7 @@
 ## funcoes genericas
 #adaptada de jonh fox
 
-'pacote' <- function(pkg, dep=TRUE,lib=Sys.getenv("R_LIBS_USER"), ...){
+pacote <- function(pkg, dep=TRUE,lib=Sys.getenv("R_LIBS_USER"), ...){
 
     pkg <- as.character(substitute(pkg))
     if (!(pkg %in% .packages(all.available=TRUE)))
@@ -362,7 +362,7 @@
 
 
 # modificada 20/10/2011 OGC
-'ls.obj' <- function (pos = 1, pattern, mode = "any", type = "any",sort.size=FALSE,kb=TRUE){
+ls.obj <- function (pos = 1, pattern, mode = "any", type = "any",sort.size=FALSE,kb=TRUE){
     Object.Name <- ls(pos = pos, envir = as.environment(pos), pattern = pattern)
     if(length(Object.Name) == 0 ) stop("Nao ha nenhum objeto a ser listado")
     Object.Mode <- rep("",length(Object.Name))
@@ -442,7 +442,7 @@
         return(objList)
 }
 
-'eda.cor2' <- function(obj) {
+eda.cor2 <- function(obj) {
     pacote("reshape2")
     pacote("ggplot2")
 
@@ -469,12 +469,12 @@
 
 
 ## soundexBR fonte lista do R
-'soundexBR'  <- function(termo) {
+soundexBR  <- function(termo) {
 
     termo <- toupper(termo)
     # 1. Retire toda pontuação da palavra
     termo <- gsub("[ÃÁÀÂÄ]","A",termo)
-    termo <- gsub("[ÉÈÊ???Ë]","E",termo)
+    termo <- gsub("[ÉÈÊË]","E",termo)
     termo <- gsub("[ÍÌÏÎI]","I",termo)
     termo <- gsub("[ÓÕÒÔÖ]","O",termo)
     termo <- gsub("[ÚÙÛÜU]","U",termo)
@@ -526,7 +526,7 @@
     return(termo)
 }
 
-'levenshtein' <- function (string1, string2, case = TRUE, map = NULL)
+levenshtein <- function (string1, string2, case = TRUE, map = NULL)
 {
     if (!is.null(map)) {
         m <- matrix(map, ncol = 2, byrow = TRUE)
@@ -590,7 +590,7 @@
 
 
 # funcao generica que declara a classe S3 p/ OR
-'or' <- function (x,...) {
+or <- function (x,...) {
     UseMethod("or")
 }
 
@@ -600,7 +600,7 @@
 #
 # Argumento ic = intervalo de confiança
 #
-'or.glm' <- function(x, ic=0.95)
+or.glm <- function(x, ic=0.95)
 {
 
     if (!all(class(x)==c("glm" ,"lm"))) stop("Essa função só pode ser usada em objetos das classes glm e lm ")
@@ -627,7 +627,7 @@
 #
 # Argumento ic = intervalo de confiança
 #
-'or.lme' <- function(x, ic=0.95)
+or.lme <- function(x, ic=0.95)
 {
     #Calcula o odds ratio e faz um grafico com os intervalos de confiança
     if (!all(class(x)==c("glmmPQL","lme")))stop("Essa função so pode ser usada em objetos da classe lme")
@@ -647,7 +647,7 @@
 
 }
 
-'or.glmmPQL' <- function(x, ic=0.95)
+or.glmmPQL <- function(x, ic=0.95)
 {
     #Calcula o odds ratio e faz um grafico com os intervalos de confiança
     if (!all(class(x)==c("glmmPQL" ,"lme")))stop("Essa função so pode ser usada em objetos da classe lme")
@@ -668,7 +668,7 @@
 }
 
 
-'or.gam' <- function(x, ic=0.95)
+or.gam <- function(x, ic=0.95)
 {
 
     if (!all(class(x)==c("gam" ,"glm","lm"))) stop("Essa função so pode ser usada em objetos das classes glm e lm e gam ")
@@ -691,7 +691,7 @@
     return(resp)
 }
 
-'or.matrix' <- function(x, alpha = 0.05){
+or.matrix <- function(x, alpha = 0.05){
     #
     #  Compute the odds ratio between two binary variables, x and y,
     #  as defined by the four numbers nij:
@@ -721,7 +721,7 @@
     oframe
 }
 
-'or.table' <- function(x, alpha = 0.05){
+or.table <- function(x, alpha = 0.05){
 
     or.matrix(as.matrix(x))
 
@@ -734,7 +734,7 @@
 # Argumento digitos = numero de decimais na tabela
 #
 
-'print.or' <- function(x,digitos=4,...) {
+print.or <- function(x,digitos=4,...) {
 
     cat("\nModelo: \n", deparse(x$modelo), "\n")
 
@@ -767,7 +767,7 @@
 #
 #             linha = largura de linha
 
-'plot.or' <- function (xls,cor=TRUE,um=TRUE,filtro=-1,linha=2,...) {
+plot.or <- function (xls,cor=TRUE,um=TRUE,filtro=-1,linha=2,...) {
     cores <- 1
     x <- data.frame(OR=xls$OR,ICInf=xls$ICInf,ICSup=xls$ICSup,nome=xls$nome)
     if (all(as.logical(filtro))) {x <- x[filtro,] }
@@ -796,7 +796,7 @@
 
 }
 
-'plotOR' <- function(x, title = NULL,ylab="OR",nomes=NULL,ordem="OR"){
+plotOR <- function(x, title = NULL,ylab="OR",nomes=NULL,ordem="OR"){
     if(all(class(x)!= "or")) stop ("classe deve ser or")
     require(ggplot2)
     tmp<-data.frame(x$OR, x$ICInf,x$ICSup)
@@ -819,7 +819,7 @@
 }
 
 
-'plotRR' <- function(x, title = NULL,ylab="RR",nomes=NULL,ordem=""){
+plotRR <- function(x, title = NULL,ylab="RR",nomes=NULL,ordem=""){
     if(all(class(x)!= "or")) stop ("classe deve ser or")
     require(ggplot2)
     tmp<-data.frame(x$OR, x$ICInf,x$ICSup)
@@ -842,7 +842,7 @@
 
 ### Semana Epidemiologica
 
-'episem' <- function(x,separa='W') {
+episem <- function(x,separa='W') {
 
     # semana epi 1 de 2000 02/01/2000
 
