@@ -6,3 +6,4 @@ Authors@R: person("Oswaldo", "Cruz", email = "ogcruz@gmail.com", role = c("aut",
 Description: Funções diversas
 License: GLP
 LazyData: TRUE
+RoxygenNote: 5.0.1
