@@ -3,14 +3,14 @@
 pos <- which(grepl(".ocmisc",search()))
 if(length(pos) >0) detach(pos=pos)
 rm(pos)
-.ocmisc_env <- new.env()
+Fiomisc <- new.env()
 
 
 
 ## EDA modifcada ha muito tempo!!! baseada na funcao eda do splus 3.4
 ## mod OGC 2012
 
-.ocmisc_env[['eda']]  <- function(x,nome="")
+Fiomisc[['eda']]  <- function(x,nome="")
 {
     # require(ctest)
     if (!is.numeric(x) || !is.vector(x))  {
@@ -63,7 +63,7 @@ rm(pos)
 #### Modificada dos pacote psych
 ### out 2010 OGC
 
-.ocmisc_env[['panel.lm']] <-
+Fiomisc[['panel.lm']] <-
     function (x, y, col = par("col"), bg = NA, pch = par("pch"),
               cex = 1, col.lm = "red",  ...)
     {   ymin <- min(y)
@@ -79,7 +79,7 @@ rm(pos)
                col = col.lm, ...)
     }
 
-.ocmisc_env[['panel.lm.ellipse']] <-
+Fiomisc[['panel.lm.ellipse']] <-
     function (x, y, col = par("col"), bg = NA, pch = par("pch"),
               cex = 1, col.lm = "red",  ...)
     {   ymin <- min(y)
@@ -102,7 +102,7 @@ rm(pos)
 
     }
 
-.ocmisc_env[['panel.hist.density']] <-
+Fiomisc[['panel.hist.density']] <-
     function(x, ...)
     {
         usr <- par("usr"); on.exit(par(usr))
@@ -116,7 +116,7 @@ rm(pos)
         lines(d)
     }
 
-.ocmisc_env[['panel.hist']] <-
+Fiomisc[['panel.hist']] <-
     function(x, ...)
     {
         usr <- par("usr"); on.exit(par(usr))
@@ -128,7 +128,7 @@ rm(pos)
     }
 
 
-.ocmisc_env[['panel.cor']] <-
+Fiomisc[['panel.cor']] <-
     function(x, y, digits=2, prefix="", cex.cor)
     {
         usr <- par("usr"); on.exit(par(usr))
@@ -141,7 +141,7 @@ rm(pos)
     }
 
 #baseda na funcao de eilse do John Fox
-.ocmisc_env[['p.ellipse']] <- function(x=0,y=0,xs=1,ys=1,r=0,add=TRUE,segments=51, col = par("col"),col.pt = par("col"),...) {
+Fiomisc[['p.ellipse']] <- function(x=0,y=0,xs=1,ys=1,r=0,add=TRUE,segments=51, col = par("col"),col.pt = par("col"),...) {
 
     angles <- (0:segments) * 2 * pi/segments
     unit.circle <- cbind(cos(angles), sin(angles))
@@ -158,7 +158,7 @@ rm(pos)
 }
 
 
-.ocmisc_env[['panel.ellipse']] <-
+Fiomisc[['panel.ellipse']] <-
     function (x, y, col = par("col"), bg = NA, pch = par("pch"),
               cex = 1, col.smooth = "red",col.pt = par("col"), ...)
     {xm <- mean(x,na.rm=TRUE)
@@ -171,7 +171,7 @@ rm(pos)
     }
 
 
-.ocmisc_env[['panel.smoothie']] <-
+Fiomisc[['panel.smoothie']] <-
     function (x, y, col = par("col"), bg = NA, pch = par("pch"),
               cex = 1, col.smooth = "red", span = 2/3, iter = 3,col.pt = par("col"),...)
     {
@@ -191,7 +191,7 @@ rm(pos)
         p.ellipse(xm,ym,xs,ys,r,col=col.smooth,...)
     }
 
-.ocmisc_env[['panel.jiggle']] <-
+Fiomisc[['panel.jiggle']] <-
     function (x, y, col = cor, bg = NA, pch = par("pch"),
               cex = 1, col.smooth = "red", span = 2/3, iter = 3,col.pt = par("col"), ...)
     {
@@ -212,7 +212,7 @@ rm(pos)
         p.ellipse(xm,ym,xs,ys,r,col=col.smooth,...)
     }
 
-.ocmisc_env[['panel.cor.scale']] <-
+Fiomisc[['panel.cor.scale']] <-
     function(x, y, digits=2, prefix="", cex.cor)
     {
         usr <- par("usr"); on.exit(par(usr))
@@ -230,13 +230,13 @@ rm(pos)
 
 
 
-.ocmisc_env[['eda.pairs']] <- function(x) pairs(x,upper.panel=panel.cor.scale,diag.panel=panel.hist.density,lower.panel=panel.smooth)
+Fiomisc[['eda.pairs']] <- function(x) pairs(x,upper.panel=panel.cor.scale,diag.panel=panel.hist.density,lower.panel=panel.smooth)
 
 
 
 ### eda heat
 
-.ocmisc_env[['eda.cor']] <- function(x,metodo="complete") {
+Fiomisc[['eda.cor']] <- function(x,metodo="complete") {
     if(length(dev.list()) >0) dev.off()
     split.screen(c(1,2))
     screen(1)
@@ -250,7 +250,7 @@ rm(pos)
 
 ## adaptada da funcao plot.cor pacote psych
 
-.ocmisc_env[['.hm']]<- function (r, numbers = FALSE, colors = TRUE, n = 51, main = NULL,
+Fiomisc[['.hm']]<- function (r, numbers = FALSE, colors = TRUE, n = 51, main = NULL,
                                  zlim = c(-1, 1), show.legend = FALSE, labels = NULL, n.legend = 10,
                                  keep.par = TRUE, ...)
 {
@@ -348,7 +348,7 @@ rm(pos)
 ## funcoes genericas
 #adaptada de jonh fox
 
-.ocmisc_env[['pacote']] <- function(pkg, dep=TRUE,lib=Sys.getenv("R_LIBS_USER"), ...){
+Fiomisc[['pacote']] <- function(pkg, dep=TRUE,lib=Sys.getenv("R_LIBS_USER"), ...){
 
     pkg <- as.character(substitute(pkg))
     if (!(pkg %in% .packages(all.available=TRUE)))
@@ -361,7 +361,7 @@ rm(pos)
 
 
 # modificada 20/10/2011 OGC
-.ocmisc_env[['ls.obj']] <- function (pos = 1, pattern, mode = "any", type = "any",sort.size=FALSE,kb=TRUE){
+Fiomisc[['ls.obj']] <- function (pos = 1, pattern, mode = "any", type = "any",sort.size=FALSE,kb=TRUE){
     Object.Name <- ls(pos = pos, envir = as.environment(pos), pattern = pattern)
     if(length(Object.Name) == 0 ) stop("Nao ha nenhum objeto a ser listado")
     Object.Mode <- rep("",length(Object.Name))
@@ -441,7 +441,7 @@ rm(pos)
         return(objList)
 }
 
-.ocmisc_env[['eda.cor2']] <- function(obj) {
+Fiomisc[['eda.cor2']] <- function(obj) {
     pacote("reshape2")
     pacote("ggplot2")
 
@@ -468,7 +468,7 @@ rm(pos)
 
 
 ## soundexBR fonte lista do R
-.ocmisc_env[['soundexBR']]  <- function(termo) {
+Fiomisc[['soundexBR']]  <- function(termo) {
 
     termo <- toupper(termo)
     # 1. Retire toda pontuação da palavra
@@ -525,7 +525,7 @@ rm(pos)
     return(termo)
 }
 
-.ocmisc_env[['levenshtein']] <- function (string1, string2, case = TRUE, map = NULL)
+Fiomisc[['levenshtein']] <- function (string1, string2, case = TRUE, map = NULL)
 {
     if (!is.null(map)) {
         m <- matrix(map, ncol = 2, byrow = TRUE)
@@ -589,7 +589,7 @@ rm(pos)
 
 
 # funcao generica que declara a classe S3 p/ OR
-.ocmisc_env[['or']] <- function (x,...) {
+Fiomisc[['or']] <- function (x,...) {
     UseMethod("or")
 }
 
@@ -599,7 +599,7 @@ rm(pos)
 #
 # Argumento ic = intervalo de confiança
 #
-.ocmisc_env[['or.glm']] <- function(x, ic=0.95)
+Fiomisc[['or.glm']] <- function(x, ic=0.95)
 {
 
     if (!all(class(x)==c("glm" ,"lm"))) stop("Essa função só pode ser usada em objetos das classes glm e lm ")
@@ -626,7 +626,7 @@ rm(pos)
 #
 # Argumento ic = intervalo de confiança
 #
-.ocmisc_env[['or.lme']] <- function(x, ic=0.95)
+Fiomisc[['or.lme']] <- function(x, ic=0.95)
 {
     #Calcula o odds ratio e faz um grafico com os intervalos de confiança
     if (!all(class(x)==c("glmmPQL","lme")))stop("Essa função so pode ser usada em objetos da classe lme")
@@ -646,7 +646,7 @@ rm(pos)
 
 }
 
-.ocmisc_env[['or.glmmPQL']] <- function(x, ic=0.95)
+Fiomisc[['or.glmmPQL']] <- function(x, ic=0.95)
 {
     #Calcula o odds ratio e faz um grafico com os intervalos de confiança
     if (!all(class(x)==c("glmmPQL" ,"lme")))stop("Essa função so pode ser usada em objetos da classe lme")
@@ -667,7 +667,7 @@ rm(pos)
 }
 
 
-.ocmisc_env[['or.gam']] <- function(x, ic=0.95)
+Fiomisc[['or.gam']] <- function(x, ic=0.95)
 {
 
     if (!all(class(x)==c("gam" ,"glm","lm"))) stop("Essa função so pode ser usada em objetos das classes glm e lm e gam ")
@@ -690,7 +690,7 @@ rm(pos)
     return(resp)
 }
 
-.ocmisc_env[['or.matrix']] <- function(x, alpha = 0.05){
+Fiomisc[['or.matrix']] <- function(x, alpha = 0.05){
     #
     #  Compute the odds ratio between two binary variables, x and y,
     #  as defined by the four numbers nij:
@@ -720,7 +720,7 @@ rm(pos)
     oframe
 }
 
-.ocmisc_env[['or.table']] <- function(x, alpha = 0.05){
+Fiomisc[['or.table']] <- function(x, alpha = 0.05){
 
     or.matrix(as.matrix(x))
 
@@ -733,7 +733,7 @@ rm(pos)
 # Argumento digitos = numero de decimais na tabela
 #
 
-.ocmisc_env[['print.or']] <- function(x,digitos=4,...) {
+Fiomisc[['print.or']] <- function(x,digitos=4,...) {
 
     cat("\nModelo: \n", deparse(x$modelo), "\n")
 
@@ -766,7 +766,7 @@ rm(pos)
 #
 #             linha = largura de linha
 
-.ocmisc_env[['plot.or']] <- function (xls,cor=TRUE,um=TRUE,filtro=-1,linha=2,...) {
+Fiomisc[['plot.or']] <- function (xls,cor=TRUE,um=TRUE,filtro=-1,linha=2,...) {
     cores <- 1
     x <- data.frame(OR=xls$OR,ICInf=xls$ICInf,ICSup=xls$ICSup,nome=xls$nome)
     if (all(as.logical(filtro))) {x <- x[filtro,] }
@@ -795,7 +795,7 @@ rm(pos)
 
 }
 
-.ocmisc_env[['plotOR']] <- function(x, title = NULL,ylab="OR",nomes=NULL,ordem="OR"){
+Fiomisc[['plotOR']] <- function(x, title = NULL,ylab="OR",nomes=NULL,ordem="OR"){
     if(all(class(x)!= "or")) stop ("classe deve ser or")
     require(ggplot2)
     tmp<-data.frame(x$OR, x$ICInf,x$ICSup)
@@ -818,7 +818,7 @@ rm(pos)
 }
 
 
-.ocmisc_env[['plotRR']] <- function(x, title = NULL,ylab="RR",nomes=NULL,ordem=""){
+Fiomisc[['plotRR']] <- function(x, title = NULL,ylab="RR",nomes=NULL,ordem=""){
     if(all(class(x)!= "or")) stop ("classe deve ser or")
     require(ggplot2)
     tmp<-data.frame(x$OR, x$ICInf,x$ICSup)
@@ -841,7 +841,7 @@ rm(pos)
 
 ### Semana Epidemiologica
 
-.ocmisc_env[['episem']] <- function(x,separa='W') {
+Fiomisc[['episem']] <- function(x,separa='W') {
 
     # semana epi 1 de 2000 02/01/2000
 
@@ -899,6 +899,6 @@ rm(pos)
 
 
 ## trancando e atachando namespace
-lockEnvironment(.ocmisc_env, bindings=TRUE)
+lockEnvironment(Fiomisc, bindings=TRUE)
 
-#attach(.ocmisc_env)
+#attach(Fiomisc)
