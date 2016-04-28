@@ -900,6 +900,6 @@
 
 
 ## trancando e atachando namespace
-lockEnvironment(Fiomisc, bindings=TRUE)
+#lockEnvironment(Fiomisc, bindings=TRUE)
 
 #attach(Fiomisc)
