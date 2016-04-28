@@ -4,6 +4,11 @@ Title: Funçoes Variadas (Title Case)
 Version: 0.1.0
 Authors@R: person("Oswaldo", "Cruz", email = "ogcruz@gmail.com", role = c("aut", "cre"))
 Description: Funções diversas
-License: GLP
+License: GPL-2
 LazyData: TRUE
 RoxygenNote: 5.0.1
+Imports:
+    ggplot2 (>= 2.0),
+    dplyr (>= 0.3.0.1)
+Suggests:
+    MASS (>= 7.3.0)
